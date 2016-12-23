@@ -280,6 +280,11 @@ angular.module('schemaForm').provider('sfBuilder', ['sfPathProvider', function(s
           if (form.type === 'template') {
             return form.template;
           }
+          
+          // allows a specific override: this permits the template for a specific instance to be overriden while
+          // still using the functionality of the original type
+          if(form.templateOverride) return form.templateOverride;
+          
           return $templateCache.get(field.template);
         }, slots, undefined, undefined, lookup);
 
